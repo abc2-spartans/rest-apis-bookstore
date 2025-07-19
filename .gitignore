@@ -130,6 +130,30 @@ TestResults/
 *.pubxml
 *.pubxml.user
 
+# SQLite Database Files
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+*.sqlite-shm
+*.sqlite-wal
+
+# Additional .NET Files
+*.user
+*.userprefs
+*.sln.ide/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+*.vsidx
+*.v2
+.vs/
+.vscode/settings.json
+.vscode/launch.json
+.vscode/tasks.json
+
 # Docker
 *.dockerignore
 Dockerfile.*
