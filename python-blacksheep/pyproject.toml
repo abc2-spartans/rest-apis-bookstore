@@ -1,0 +1,15 @@
+[project]
+name = "python-blacksheep-bookstore"
+version = "0.1.0"
+description = "A simple REST API for managing books, using BlackSheep and SQLite."
+authors = ["Your Name <you@example.com>"]
+requires-python = ">=3.12"
+dependencies = [
+    "blacksheep",
+    "aiosqlite",
+    "orjson",
+    "uvicorn"
+] 
+
+[tool.black]
+line-length = 79 
