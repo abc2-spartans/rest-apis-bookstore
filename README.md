@@ -1,64 +1,93 @@
-# RESTful Bookstore API Tutorials
+# Multi-Stack Bookstore REST APIs
 
-Welcome to the **RESTful Bookstore API Tutorials** repository! This project is designed for students and developers learning to build RESTful APIs in multiple programming languages. Each language implementation provides a consistent, beginner-friendly example of a RESTful API with CRUD (Create, Read, Update, Delete) operations for a bookstore, specifically managing a `books` resource.
+Welcome to the **Multi-Stack Bookstore REST APIs** repository! This comprehensive project demonstrates how to build consistent RESTful APIs across multiple programming languages and frameworks. Each implementation provides a complete bookstore API with CRUD operations, allowing developers to compare approaches and learn best practices across different technology stacks.
 
 ## Purpose
 
 This repository aims to:
 
-- Teach the fundamentals of RESTful API design and implementation.
-- Provide hands-on examples in popular programming languages: Node.js, Python, Go, Rust, Java and dotNet.
-- Allow students to compare how REST APIs are built across different languages and frameworks for a bookstore application.
-- Offer shared resources, such as API specifications and testing tools, to enhance learning.
+- **Demonstrate RESTful API patterns** across multiple languages and frameworks
+- **Provide practical examples** for developers learning new technology stacks
+- **Enable easy comparison** of implementation approaches between languages
+- **Offer migration guides** for developers switching between technologies
+- **Showcase modern tooling** and best practices for each ecosystem
 
 ## Repository Structure
 
-The repository is organized as follows:
+The repository is organized by language and framework combinations:
 
 ```
 rest-api-bookstore/
-├── /docs                   # Shared resources and documentation
-│   ├── rest-principles.md # Guide on RESTful API concepts
-│   ├── api-spec.md        # API specification for bookstore (OpenAPI/Swagger)
-│   └── postman-collection.json # Postman collection for testing bookstore APIs
-├── /nodejs                # Node.js implementation (Express)
-│   ├── /src               # Source code for bookstore API
-│   ├── package.json       # Dependencies
-│   ├── README.md          # Node.js-specific instructions
-│   └── Dockerfile         # Optional Docker setup
-├── /java                  # Java implementation (Spring Boot)
-│   ├── /src               # Source code for bookstore API
-│   ├── pom.xml            # Maven dependencies
-│   ├── README.md          # Java-specific instructions
-│   └── Dockerfile         # Optional Docker setup
-├── /python                # Python implementation (FastAPI)
-│   ├── /src               # Source code for bookstore API
-│   ├── requirements.txt   # Dependencies
-│   ├── README.md          # Python-specific instructions
-│   └── Dockerfile         # Optional Docker setup
-├── README.md              # This file
-├── LICENSE                # MIT License
-└── .gitignore             # Git ignore file
+├── /DOCS/                     # Documentation and migration guides
+│   ├── NODE_TO_PYTHON.md     # Node.js to Python migration guide
+│   ├── NODE_TO_JAVA.md       # Node.js to Java migration guide
+│   ├── NODE_TO_RUST.md       # Node.js to Rust migration guide
+│   ├── NODE_TO_DOTNET.md     # Node.js to .NET migration guide
+│   ├── NODE_TO_GO.md         # Node.js to Go migration guide
+│   ├── api-spec.md           # API specification (OpenAPI/Swagger)
+│   └── postman-collection.json # Postman collection for testing
+├── /nodejs-express/           # Node.js with Express framework
+├── /nodejs-koa/              # Node.js with Koa framework
+├── /nodejs-nest/             # Node.js with NestJS framework
+├── /python-flask/            # Python with Flask framework
+├── /python-fastapi/          # Python with FastAPI framework
+├── /python-blacksheep/       # Python with BlackSheep framework
+├── /javaspringboot/          # Java with Spring Boot framework
+├── /dotnet/                  # .NET with ASP.NET Core
+├── /go-fiber/                # Go with Fiber framework
+├── /rust-rocket/             # Rust with Rocket framework
+├── /rust-poem/               # Rust with Poem framework
+├── /rust-wrap/               # Rust with Warp framework
+├── README.md                 # This file
+├── LICENSE                   # MIT License
+└── .gitignore                # Git ignore file
 ```
 
-## Available Languages
+## Available Implementations
 
 The following languages and frameworks are currently supported:
 
-| Language | Framework   | Folder             | Setup Instructions          |
-| -------- | ----------- | ------------------ | --------------------------- |
-| Node.js  | Express     | [/nodejs](/nodejs) | [README](/nodejs/README.md) |
-| Python   | FastAPI     | [/python](/python) | [README](/python/README.md) |
-| Go       | Spring Boot | [/go](/go)         | [README](/go/README.md)     |
-| RUST     | Spring Boot | [/rust](/rust)     | [README](/rust/README.md)   |
-| Java     | Spring Boot | [/java](/java)     | [README](/java/README.md)   |
-| .net     | Spring Boot | [/dotnet](/dotnet) | [README](/dotnet/README.md) |
+### Node.js Implementations
+| Framework | Folder | Description |
+|-----------|--------|-------------|
+| Express | [/nodejs-express](/nodejs-express) | Minimal and flexible web framework |
+| Koa | [/nodejs-koa](/nodejs-koa) | Next-generation web framework |
+| NestJS | [/nodejs-nest](/nodejs-nest) | Progressive Node.js framework |
 
-Each language folder contains:
+### Python Implementations
+| Framework | Folder | Description |
+|-----------|--------|-------------|
+| Flask | [/python-flask](/python-flask) | Lightweight WSGI web framework |
+| FastAPI | [/python-fastapi](/python-fastapi) | Modern, fast web framework |
+| BlackSheep | [/python-blacksheep](/python-blacksheep) | Fast ASGI web framework |
 
-- A complete RESTful API for a bookstore with CRUD operations for `books`.
-- A dedicated `README.md` with setup and run instructions.
-- A `Dockerfile` (optional) for containerized deployment.
+### Java Implementations
+| Framework | Folder | Description |
+|-----------|--------|-------------|
+| Spring Boot | [/javaspringboot](/javaspringboot) | Production-ready Spring framework |
+
+### .NET Implementations
+| Framework | Folder | Description |
+|-----------|--------|-------------|
+| ASP.NET Core | [/dotnet](/dotnet) | Cross-platform .NET framework |
+
+### Go Implementations
+| Framework | Folder | Description |
+|-----------|--------|-------------|
+| Fiber | [/go-fiber](/go-fiber) | Express-inspired web framework |
+
+### Rust Implementations
+| Framework | Folder | Description |
+|-----------|--------|-------------|
+| Rocket | [/rust-rocket](/rust-rocket) | Type-safe web framework |
+| Poem | [/rust-poem](/rust-poem) | Full-featured web framework |
+| Warp | [/rust-wrap](/rust-wrap) | Composable web framework |
+
+Each implementation contains:
+- Complete RESTful API with CRUD operations for `books`
+- Dedicated `README.md` with setup and run instructions
+- SQLite database integration
+- Consistent API endpoints and responses
 
 ## Bookstore API Overview
 
@@ -89,36 +118,62 @@ All implementations provide a RESTful API for managing a bookstore’s `books` r
 - Standard HTTP status codes are used (e.g., `200 OK`, `201 Created`, `404 Not Found`).
 - Each implementation uses in-memory storage or a lightweight database (e.g., SQLite, JSON file) to keep it beginner-friendly.
 
+## Migration Guides
+
+Switching between technology stacks? Our comprehensive migration guides help you understand the equivalents and differences:
+
+- **[Node.js to Python](/DOCS/NODE_TO_PYTHON.md)** - npm/Node.js concepts mapped to Python/uv
+- **[Node.js to Java](/DOCS/NODE_TO_JAVA.md)** - npm/Node.js concepts mapped to Java/Maven
+- **[Node.js to Rust](/DOCS/NODE_TO_RUST.md)** - npm/Node.js concepts mapped to Rust/Cargo
+- **[Node.js to .NET](/DOCS/NODE_TO_DOTNET.md)** - npm/Node.js concepts mapped to .NET/dotnet CLI
+- **[Node.js to Go](/DOCS/NODE_TO_GO.md)** - npm/Node.js concepts mapped to Go/go mod
+
+Each guide covers:
+- Package management equivalents
+- Project initialization
+- Dependency installation
+- Running applications
+- Environment variables
+- JSON handling
+- Server setup examples
+- Middleware patterns
+- Routing examples
+
 ## Getting Started
 
 Follow these steps to get started:
 
-1. **Learn REST Basics**:
+1. **Choose Your Stack**:
+   - Browse the [Available Implementations](#available-implementations) section
+   - Select a language and framework combination that interests you
+   - Navigate to the corresponding folder
 
-   - Read [/docs/rest-principles.md](/docs/rest-principles.md) to understand RESTful API concepts, including HTTP methods, status codes, and best practices.
-   - Review [/docs/api-spec.md](/docs/api-spec.md) for the bookstore API specification, which defines the endpoints and data structure.
+2. **Follow Setup Instructions**:
+   - Each implementation has a detailed `README.md` with setup steps
+   - Install the required dependencies and tools
+   - Run the development server
 
-2. **Choose a Language**:
+3. **Test the API**:
+   - Use the provided cURL examples in each README
+   - Import `/DOCS/postman-collection.json` into Postman for comprehensive testing
+   - All implementations expose the same API endpoints for consistency
 
-   - Navigate to the folder of your preferred language (`/nodejs`, `/go`, or `/python` etc).
-   - Follow the setup instructions in the respective `README.md`.
+4. **Compare Implementations**:
+   - Try multiple frameworks within the same language
+   - Use the migration guides to understand differences between languages
+   - Compare code structure, performance, and developer experience
 
-3. **Test the APIs**:
-
-   - Import [/docs/postman-collection.json](/docs/postman-collection.json) into Postman to test the bookstore API endpoints.
-   - Alternatively, use cURL commands provided in each language’s README.
-
-4. **Explore and Compare**:
-   - Each implementation follows the same bookstore API spec for consistency.
-   - Compare how Node.js (Express), Java (Spring Boot), and Python (FastAPI) handle routing, data validation, and CRUD operations.
+5. **Learn from Migration Guides**:
+   - If you're familiar with Node.js, use our migration guides to quickly understand other languages
+   - Each guide provides practical examples and equivalent commands
 
 ## Prerequisites
 
 Before running the code, ensure you have the following installed (specific versions are listed in each language’s README):
 
-- **Node.js** (v16 or later): For the Node.js implementation.
+- **Node.js** (v22 or later): For the Node.js implementation.
 - **Java JDK** (v17 or later): For the Java implementation.
-- **Python** (v3.8 or later): For the Python implementation.
+- **Python** (v3.12 or later): For the Python implementation.
 - **Docker**: Optional, for running containerized versions.
 - **Postman**: For testing APIs (or use cURL).
 
@@ -131,30 +186,44 @@ Before running the code, ensure you have the following installed (specific versi
    cd rest-api-bookstore
    ```
 
-2. **Navigate to a Language Folder**:
+2. **Choose an Implementation**:
 
    ```bash
-   cd nodejs  # or java, or python
+   cd nodejs-express     # Node.js with Express
+   cd python-flask       # Python with Flask
+   cd javaspringboot     # Java with Spring Boot
+   cd dotnet             # .NET with ASP.NET Core
+   # ... or any other implementation
    ```
 
-3. **Follow Language-Specific Instructions**:
+3. **Follow Implementation-Specific Instructions**:
 
-   - Refer to the `README.md` in the chosen language folder for detailed setup steps (e.g., installing dependencies, running the server).
-   - Example for Node.js:
-     ```bash
-     cd nodejs
-     npm install
-     npm start
-     ```
+   - Each folder contains a detailed `README.md` with setup steps
+   - Install required dependencies and tools
+   - Run the development server
+   
+   **Example for Node.js Express**:
+   ```bash
+   cd nodejs-express
+   yarn install
+   yarn start
+   ```
+   
+   **Example for Python Flask**:
+   ```bash
+   cd python-flask
+   poetry install
+   ./dev.sh
+   ```
 
 4. **Test the API**:
    - Use Postman with the provided collection or run cURL commands like:
      ```bash
-     curl http://localhost:3000/books
+     curl http://localhost:5000/api/v1/books
      ```
    - Example POST request:
      ```bash
-     curl -X POST http://localhost:3000/books \
+     curl -X POST http://localhost:5000/api/v1/books \
      -H "Content-Type: application/json" \
      -d '{"title":"1984","author":"George Orwell","isbn":"978-0451524935","price":8.99,"stock":100}'
      ```
@@ -172,7 +241,7 @@ Here’s how you might interact with the bookstore API (Node.js example, port 30
 - **Get all books**:
 
   ```bash
-  curl http://localhost:3000/books
+  curl http://localhost:5000/api/v1/books
   ```
 
   Response:
@@ -192,7 +261,7 @@ Here’s how you might interact with the bookstore API (Node.js example, port 30
 
 - **Create a new book**:
   ```bash
-  curl -X POST http://localhost:3000/books \
+  curl -X POST http://localhost:5000/api/v1/books \
   -H "Content-Type: application/json" \
   -d '{"title":"1984","author":"George Orwell","isbn":"978-0451524935","price":8.99,"stock":100}'
   ```
