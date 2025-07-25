@@ -59,6 +59,14 @@ pip install .
 
 - Live reload: edit `main.py` and restart `./dev.sh`
 
+## Resources
+
+- [BlackSheep Documentation](https://blacksheep.readthedocs.io/en/latest/)
+- [SQLite Documentation](https://www.sqlite.org/docs.html)
+- [uv Documentation](https://uv.readthedocs.io/en/latest/)
+- [uvicorn Documentation](https://www.uvicorn.org/)
+- [uv-installation](https://docs.astral.sh/uv/getting-started/installation/#installation-methods)
+
 ## Troubleshooting
 
 - If you see errors about duplicate routes, ensure you have only one function per route and restart the server.
