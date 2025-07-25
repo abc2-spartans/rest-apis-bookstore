@@ -19,6 +19,38 @@ yarn start
 - `PUT /api/v1/books/:id` — Update a book
 - `DELETE /api/v1/books/:id` — Delete a book
 
+## Example Requests(You can also create Postman collection for this API)
+
+### Add a Book
+```sh
+curl -X POST http://localhost:5000/api/v1/books \
+  -H 'Content-Type: application/json' \
+  -d '{"title": "1984", "author": "George Orwell", "published_year": 1949}'
+```
+
+### List Books
+```sh
+curl http://localhost:5000/api/v1/books
+```
+
+### Get Book by ID
+```sh
+curl http://localhost:5000/api/v1/books/1
+```
+
+### Update Book
+```sh
+curl -X PUT http://localhost:5000/api/v1/books/1 \
+  -H 'Content-Type: application/json' \
+  -d '{"title": "Animal Farm", "author": "George Orwell", "published_year": 1945}'
+```
+
+### Delete Book
+```sh
+curl -X DELETE http://localhost:5000/api/v1/books/1
+```
+
+
 ## DB
 - Uses SQLite, file: `bookstore.db` (auto-created)
 
