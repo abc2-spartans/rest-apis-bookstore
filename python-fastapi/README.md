@@ -37,6 +37,9 @@ pip install fastapi uvicorn aiosqlite
 # uv pip install fastapi uvicorn aiosqlite
 
 # 3. Start the server
+# Option 1: Use the provided dev script
+./dev.sh
+# Option 2: Run directly with uvicorn
 uvicorn main:app --reload --port 5000
 ```
 
@@ -110,6 +113,12 @@ curl -X DELETE http://localhost:5000/api/v1/books/1
 Pull requests and issues are welcome! For major changes, please open an issue first to discuss what you would like to change.
 
 ---
+
+## Resources
+
+- [FastAPI Documentation](https://fastapi.tiangolo.com/)
+- [Uvicorn Documentation](https://www.uvicorn.org/)
+- [aiosqlite Documentation](https://aiosqlite.omnilib.dev/)
 
 ## License
 MIT
