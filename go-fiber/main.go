@@ -130,6 +130,6 @@ func main() {
 		return c.SendStatus(204)
 	})
 
-	fmt.Println("Bookstore API listening at http://localhost:3000")
-	log.Fatal(app.Listen(":3000"))
+	fmt.Println("Bookstore API listening at http://localhost:5000")
+	log.Fatal(app.Listen(":5000"))
 }

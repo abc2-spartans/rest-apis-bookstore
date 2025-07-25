@@ -32,7 +32,7 @@ fn health() -> Json<rocket::serde::json::Value> {
         "status": "healthy",
         "timestamp": chrono::Utc::now().to_rfc3339(),
         "service": "Bookstore API",
-        "apiURL": "http://localhost:8000/api/v1/books"
+        "apiURL": "http://localhost:5000/api/v1/books"
     }))
 }
 

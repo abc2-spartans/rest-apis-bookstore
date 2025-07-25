@@ -16,7 +16,7 @@ async fn health() -> Json<serde_json::Value> {
         "status": "healthy",
         "timestamp": chrono::Utc::now().to_rfc3339(),
         "service": "Bookstore API",
-        "apiURL": "http://localhost:7000/api/v1/books"
+        "apiURL": "http://localhost:5000/api/v1/books"
     }))
 }
 
@@ -89,7 +89,7 @@ async fn main() -> anyhow::Result<()> {
         .at("/api/v1/books/:id", get(get_book).put(update_book).delete(delete_book))
         .data(pool);
 
-    println!("Bookstore API listening at http://localhost:7000");
-    Server::new(TcpListener::bind("0.0.0.0:7000")).run(app).await?;
+    println!("Bookstore API listening at http://localhost:5000");
+    Server::new(TcpListener::bind("0.0.0.0:5000")).run(app).await?;
     Ok(())
 }
