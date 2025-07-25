@@ -3,8 +3,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Book } from './book.entity';
 import { BooksController } from './books.controller';
 import { BooksService } from './books.service';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 
 @Module({
   imports: [
@@ -16,7 +14,7 @@ import { AppService } from './app.service';
     }),
     TypeOrmModule.forFeature([Book]),
   ],
-  controllers: [AppController, BooksController],
-  providers: [AppService, BooksService],
+  controllers: [BooksController],
+  providers: [BooksService],
 })
 export class AppModule {}

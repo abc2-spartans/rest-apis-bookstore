@@ -21,7 +21,7 @@ export class BooksController {
       status: 'healthy',
       timestamp: new Date().toISOString(),
       service: 'Bookstore API',
-      apiURL: 'http://localhost:4200/api/v1/books',
+      apiURL: 'http://localhost:5000/api/v1/books',
     };
   }
 
