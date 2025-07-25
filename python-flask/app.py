@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify, abort
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
-from datetime import datetime
+from datetime import datetime, timezone
 
 app = Flask(__name__)
 CORS(app)
@@ -36,7 +36,7 @@ def health():
     return jsonify(
         {
             "status": "healthy",
-            "timestamp": datetime.now(datetime.timezone.utc).isoformat(),
+            "timestamp": datetime.now(timezone.utc).isoformat(),
             "service": "Bookstore API",
             "apiURL": "http://localhost:5000/api/v1/books",
         }
