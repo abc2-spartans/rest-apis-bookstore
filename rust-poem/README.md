@@ -2,6 +2,17 @@
 
 A simple REST API for managing books, using Poem and SQLite.
 
+## Prerequisites
+
+- [Rust and Cargo](https://www.rust-lang.org/tools/install) must be installed.
+  - You can install Rust and Cargo with:
+    ```sh
+    curl --proto '=https' --tlsv1.2 -sSf [https://sh.rustup.rs](https://sh.rustup.rs) | sh
+    ```
+- SQLite is used as the database. Most systems come with SQLite preinstalled, but if you encounter issues, install the native library:
+  - **Ubuntu/Debian:** `sudo apt-get install libsqlite3-dev`
+  - **Mac:** `brew install sqlite3`
+  
 ## Running the API
 
 ```sh
