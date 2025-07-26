@@ -15,10 +15,26 @@ A simple REST API for managing books, using Poem and SQLite.
   
 ## Running the API
 
+### Standard Run
 ```sh
 cd rust-poem
 cargo run
 ```
+
+### Live Reload (Development)
+For automatic reloading when files change:
+
+1. Install cargo-watch (if not already installed):
+   ```sh
+   cargo install cargo-watch
+   ```
+
+2. Run with live reload:
+   ```sh
+   cargo watch -x run
+   ```
+
+The server will automatically restart when you make changes to the source code.
 
 ## Endpoints
 
