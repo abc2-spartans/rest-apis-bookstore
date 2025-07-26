@@ -50,3 +50,8 @@ The server will automatically restart when you make changes to the source code.
 
 ## Dev
 - Auto-migration on startup
+
+## Resources
+- [Poem Framework](https://docs.rs/poem/latest/poem/)
+- [Crates Registry](https://crates.io/)
+- [Cargo Book](https://doc.rust-lang.org/cargo/)
