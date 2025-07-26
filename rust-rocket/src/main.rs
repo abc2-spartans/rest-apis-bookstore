@@ -35,14 +35,29 @@ table! {
     }
 }
 
-#[get("/")]
-fn health() -> Json<rocket::serde::json::Value> {
+// Shared helper function for health responses
+fn get_health_response() -> Json<rocket::serde::json::Value> {
     Json(serde_json::json!({
         "status": "healthy",
         "timestamp": chrono::Utc::now().to_rfc3339(),
         "service": "Bookstore API",
         "apiURL": "http://localhost:5000/api/v1/books"
     }))
+}
+
+#[get("/")]
+fn health() -> Json<rocket::serde::json::Value> {
+    get_health_response()
+}
+
+#[get("/health")]
+fn health_check() -> Json<rocket::serde::json::Value> {
+    get_health_response()
+}
+
+#[get("/api/v1")]
+fn api_health() -> Json<rocket::serde::json::Value> {
+    get_health_response()
 }
 
 #[get("/api/v1/books")]
@@ -97,5 +112,5 @@ async fn delete_book(conn: DbConn, book_id: i32) -> rocket::http::Status {
 fn rocket() -> _ {
     rocket::build()
         .attach(DbConn::fairing())
-        .mount("/", routes![health, get_books, get_book, create_book, update_book, delete_book])
+        .mount("/", routes![health, health_check, api_health, get_books, get_book, create_book, update_book, delete_book])
 }
