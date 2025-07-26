@@ -51,22 +51,15 @@ async def on_start():
 
 
 @app.router.route("/", methods=["GET"])
-async def root(request):
-    return json({"message": "Server is healthy and running"})
-
-@app.router.route("/api/v1", methods=["GET"])
-async def root(request):
-    return json({"message": "Welcome to the Bookstore API!"})
-
-
 @app.router.route("/health", methods=["GET"])
+@app.router.route("/api/v1", methods=["GET"])
 @app.router.route("/api/v1/health", methods=["GET"])
 async def health_check(request):
     return json(
         {
             "status": "healthy",
             "timestamp": datetime.utcnow().isoformat(),
-            "service": "Bookstore API",
+            "service": "Welcome to the Bookstore API!",
             "apiURL": "http://localhost:5000/api/v1/books",
         }
     )
