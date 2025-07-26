@@ -29,18 +29,30 @@ async fn main() -> Result<()> {
     )?;
     let db: Db = Arc::new(Mutex::new(db));
 
-    // Health check endpoint
-    let health = warp::path::end()
-        .and(warp::get())
-        .map(|| {
-            let resp = serde_json::json!({
-                "status": "healthy",
-                "timestamp": chrono::Utc::now().to_rfc3339(),
-                "service": "Bookstore API",
-                "apiURL": "http://localhost:5000/api/v1/books"
-            });
-            warp::reply::json(&resp)
+    // Shared health response function
+    let health_response = || {
+        let resp = serde_json::json!({
+            "status": "healthy",
+            "timestamp": chrono::Utc::now().to_rfc3339(),
+            "service": "Bookstore API",
+            "apiURL": "http://localhost:5000/api/v1/books"
         });
+        warp::reply::json(&resp)
+    };
+
+    // Health check endpoints
+    let health_root = warp::path::end()
+        .and(warp::get())
+        .map(health_response);
+
+    let health_check = warp::path("health")
+        .and(warp::path::end())
+        .and(warp::get())
+        .map(health_response);
+
+    let health_api = warp::path!("api" / "v1")
+        .and(warp::get())
+        .map(health_response);
 
     // Get all books
     let db_filter = warp::any().map(move || db.clone());
@@ -76,7 +88,9 @@ async fn main() -> Result<()> {
         .and(db_filter.clone())
         .and_then(delete_existing_book);
 
-    let routes = health
+    let routes = health_root
+        .or(health_check)
+        .or(health_api)
         .or(get_books)
         .or(get_book)
         .or(create_book)
