@@ -1,17 +1,27 @@
 #[macro_use] extern crate rocket;
+#[macro_use] extern crate diesel;
+
 use rocket::serde::{Serialize, Deserialize, json::Json};
-use rocket_sync_db_pools::{database, diesel};
-use rocket_sync_db_pools::diesel::prelude::*;
-use rocket::State;
-use std::sync::Arc;
+use rocket_sync_db_pools::database;
+use diesel::prelude::*;
+use diesel::{Queryable, Insertable};
 
 #[database("sqlite_db")]
 struct DbConn(diesel::SqliteConnection);
 
-#[derive(Queryable, Serialize, Deserialize, Insertable)]
-#[table_name = "books"]
+// Struct for querying existing books
+#[derive(Queryable, Serialize, Deserialize, Clone)]
 pub struct Book {
-    pub id: Option<i32>,
+    pub id: i32,
+    pub title: String,
+    pub author: String,
+    pub published_year: Option<i32>,
+}
+
+// Struct for inserting new books
+#[derive(Insertable, Serialize, Deserialize)]
+#[diesel(table_name = books)]
+pub struct NewBook {
     pub title: String,
     pub author: String,
     pub published_year: Option<i32>,
@@ -19,7 +29,7 @@ pub struct Book {
 
 table! {
     books (id) {
-        id -> Nullable<Integer>,
+        id -> Integer,
         title -> Text,
         author -> Text,
         published_year -> Nullable<Integer>,
@@ -50,27 +60,27 @@ async fn get_book(conn: DbConn, book_id: i32) -> Option<Json<Book>> {
 }
 
 #[post("/api/v1/books", format = "json", data = "<book>")]
-async fn create_book(conn: DbConn, book: Json<Book>) -> Option<Json<Book>> {
+async fn create_book(conn: DbConn, book: Json<NewBook>) -> Option<Json<Book>> {
     use self::books::dsl::*;
-    let new_book = Book { id: None, ..book.into_inner() };
-    let inserted: Result<Book, _> = conn.run(move |c| {
+    let new_book = book.into_inner();
+    let inserted = conn.run(move |c| {
         diesel::insert_into(books).values(&new_book).execute(c).ok()?;
         books.order(id.desc()).first(c).ok()
     }).await;
-    inserted.ok().map(Json)
+    inserted.map(Json)
 }
 
 #[put("/api/v1/books/<book_id>", format = "json", data = "<book>")]
-async fn update_book(conn: DbConn, book_id: i32, book: Json<Book>) -> Option<Json<Book>> {
+async fn update_book(conn: DbConn, book_id: i32, book: Json<NewBook>) -> Option<Json<Book>> {
     use self::books::dsl::*;
-    let updated_book = Book { id: Some(book_id), ..book.into_inner() };
-    let result: Result<Book, _> = conn.run(move |c| {
+    let updated_book = book.into_inner();
+    let result = conn.run(move |c| {
         diesel::update(books.filter(id.eq(book_id)))
             .set((title.eq(&updated_book.title), author.eq(&updated_book.author), published_year.eq(updated_book.published_year)))
             .execute(c).ok()?;
         books.filter(id.eq(book_id)).first(c).ok()
     }).await;
-    result.ok().map(Json)
+    result.map(Json)
 }
 
 #[delete("/api/v1/books/<book_id>")]
