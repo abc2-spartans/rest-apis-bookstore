@@ -29,13 +29,27 @@ mvn clean package
 java -jar target/bookstore-app-*.jar
 ```
 
-### Development Mode
-For automatic reloading during development, you can use Spring Boot DevTools (if included in dependencies):
+### Development Mode (Live Reload)
+For automatic reloading during development, Spring Boot DevTools is included in the project dependencies. Simply run:
 ```bash
-mvn spring-boot:run -Dspring-boot.run.profiles=dev
+mvn spring-boot:run
 ```
 
-The server will start on `http://localhost:8080`
+**Live Reload Features:**
+- **Automatic Restart**: The application automatically restarts when you make changes to:
+  - Java source files
+  - Resources in `src/main/resources`
+  - Configuration files
+
+**How it works:**
+1. Start the application with `mvn spring-boot:run`
+2. Make changes to your Java code or resources
+3. Save the files
+4. The application will automatically restart within seconds
+
+**Note**: DevTools is automatically disabled when running a packaged application (JAR file).
+
+The server will start on `http://localhost:5000`
 
 ## Endpoints
 
@@ -66,7 +80,7 @@ The server will start on `http://localhost:8080`
 
 - **Database**: H2 in-memory database (for development/testing)
 - **ORM**: Spring Data JPA with Hibernate
-- **Database Console**: Available at `http://localhost:8080/h2-console`
+- **Database Console**: Available at `http://localhost:5000/h2-console`
   - JDBC URL: `jdbc:h2:mem:testdb`
   - Username: `sa`
   - Password: `password`
@@ -104,7 +118,7 @@ The application can be configured via `src/main/resources/application.properties
 
 ```properties
 # Server Configuration
-server.port=8080
+server.port=5000
 
 # Database Configuration
 spring.datasource.url=jdbc:h2:mem:testdb
