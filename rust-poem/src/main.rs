@@ -174,11 +174,21 @@ async fn main() -> anyhow::Result<()> {
     .await?;
 
     // Define routes
-    let app = Route::new()
-        .at("/api/v1/health", get(health))
+    let mut app = Route::new();
+    
+    // Health check endpoints - multiple paths for same handler
+    let health_paths = ["/", "/health", "/api/v1/health"];
+    for path in health_paths {
+        app = app.at(path, get(health));
+    }
+    
+    // Book endpoints
+    app = app
         .at("/api/v1/books", get(get_books).post(create_book))
-        .at("/api/v1/books/:id", get(get_book).put(update_book).delete(delete_book))
-        .data(pool);
+        .at("/api/v1/books/:id", get(get_book).put(update_book).delete(delete_book));
+    
+    // Add shared data (database pool) to all routes
+    let app = app.data(pool);
 
     // Start server
     println!("Bookstore API listening at http://localhost:5000");
