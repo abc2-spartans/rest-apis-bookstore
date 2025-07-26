@@ -5,7 +5,7 @@ A RESTful API for managing books, built with Spring Boot and H2 in-memory databa
 ## Running the API
 
 ### Prerequisites
-- Java 11 or higher
+- Java 10 or higher
 - Maven 3.6+ (if using Maven) or Gradle 6+ (if using Gradle)
 
 ### Standard Run
