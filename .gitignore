@@ -128,6 +128,8 @@ TestResults/
 *.azurePubxml
 *.pubxml
 *.pubxml.user
+dotnet/bookstore.db
+dotnet/Bookstore.http
 
 # SQLite Database Files
 *.db
