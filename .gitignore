@@ -122,7 +122,6 @@ x86/
 *.snk
 TestResults/
 *.trx
-*.xml
 *.config.nuspec
 *.metaproj
 *.publishsettings
