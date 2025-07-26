@@ -30,6 +30,7 @@ async def startup():
 
 
 @app.get("/", tags=["Health"])
+@app.get("/api/v1", tags=["Health"])
 @app.get("/health", tags=["Health"])
 async def health():
     return {

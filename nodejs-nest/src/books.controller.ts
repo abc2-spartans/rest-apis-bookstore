@@ -15,7 +15,7 @@ import { Book } from './book.entity';
 export class BooksController {
   constructor(private readonly booksService: BooksService) {}
 
-  @Get(['/', '/health'])
+  @Get(['/','/api/v1','/health'])
   health() {
     return {
       status: 'healthy',

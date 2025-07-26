@@ -177,7 +177,7 @@ async fn main() -> anyhow::Result<()> {
     let mut app = Route::new();
     
     // Health check endpoints - multiple paths for same handler
-    let health_paths = ["/", "/health", "/api/v1/health"];
+    let health_paths = ["/", "/health", "/api/v1"];
     for path in health_paths {
         app = app.at(path, get(health));
     }

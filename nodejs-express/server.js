@@ -28,7 +28,7 @@ db.serialize(() => {
 });
 
 // Health check
-app.get(["/", "/health"], (req, res) => {
+app.get(["/", "/api/v1", "/health"], (req, res) => {
   res.json({
     status: "healthy",
     timestamp: new Date().toISOString(),
