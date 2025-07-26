@@ -1,5 +1,4 @@
 #[macro_use] extern crate rocket;
-#[macro_use] extern crate diesel;
 
 use rocket::serde::{Serialize, Deserialize, json::Json};
 use rocket_sync_db_pools::database;
