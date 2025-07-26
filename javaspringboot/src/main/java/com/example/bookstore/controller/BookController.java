@@ -10,7 +10,7 @@ import com.example.bookstore.entity.Book;
 import com.example.bookstore.service.BookService;
 
 @RestController
-@RequestMapping("/api/books")
+@RequestMapping("/api/v1/books")
 public class BookController {
 
     @Autowired
