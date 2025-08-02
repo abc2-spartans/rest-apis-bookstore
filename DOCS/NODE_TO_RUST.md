@@ -56,6 +56,9 @@ edition = "2021"
 [dependencies]
 serde = "1.0"
 tokio = { version = "1.0", features = ["full"] }
+
+[dev-dependencies]
+cargo-watch = "8.4"
 ```
 - `Cargo.toml` contains project metadata, dependencies, and build configuration.
 
