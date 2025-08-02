@@ -25,3 +25,21 @@ go run main.go
 ## Dev
 
 - Auto-migration on startup
+
+## Live Reload with Air
+
+For a better development experience, you can use [Air](https://github.com/cosmtrek/air) for live reloading.
+
+### Install Air
+```bash
+go install github.com/cosmtrek/air@latest
+```
+
+### Run with Air
+```bash
+air
+```
+
+This will automatically reload your application when you make changes to the code.
+
+
