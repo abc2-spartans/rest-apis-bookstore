@@ -28,13 +28,13 @@ A simple, async REST API for managing books, built with FastAPI and SQLite.
 python -m venv .venv
 source .venv/bin/activate
 
-# 2. Install dependencies
-pip install fastapi uvicorn aiosqlite
+# 2. Install dependencies using requirements.txt
+pip install -r requirements.txt
 
 # (Optional: use uv for faster installs)
 # uv venv .venv
 # source .venv/bin/activate
-# uv pip install fastapi uvicorn aiosqlite
+# uv pip install -r requirements.txt
 
 # 3. Start the server
 # Option 1: Use the provided dev script
@@ -117,6 +117,7 @@ Pull requests and issues are welcome! For major changes, please open an issue fi
 ## Resources
 
 - [FastAPI Documentation](https://fastapi.tiangolo.com/)
+- [Pydantic Documentation](https://docs.pydantic.dev/latest/)
 - [Uvicorn Documentation](https://www.uvicorn.org/)
 - [aiosqlite Documentation](https://aiosqlite.omnilib.dev/)
 
