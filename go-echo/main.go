@@ -8,8 +8,8 @@ import (
 	"strconv"
 	"time"
 
-	_ "github.com/mattn/go-sqlite3"
 	"github.com/labstack/echo/v4"
+	_ "github.com/mattn/go-sqlite3"
 )
 
 type Book struct {
@@ -22,6 +22,21 @@ type Book struct {
 func main() {
 	// Initialize Echo instance
 	e := echo.New()
+
+	// Middleware for logging requests
+	e.Use(func(next echo.HandlerFunc) echo.HandlerFunc {
+		return func(c echo.Context) error {
+			start := time.Now()
+			method := c.Request().Method
+			path := c.Request().URL.Path
+			ip := c.RealIP()
+			log.Printf("Started %s %s for %s", method, path, ip)
+			err := next(c)
+			status := c.Response().Status
+			log.Printf("Completed %s %s for %s with %d in %v", method, path, ip, status, time.Since(start))
+			return err
+		}
+	})
 
 	// Database setup
 	db, err := sql.Open("sqlite3", "bookstore.db")
@@ -77,6 +92,7 @@ func getBooks(db *sql.DB) echo.HandlerFunc {
 		for rows.Next() {
 			var b Book
 			if err := rows.Scan(&b.ID, &b.Title, &b.Author, &b.PublishedYear); err != nil {
+				log.Printf("Error scanning book row: %v", err)
 				return c.JSON(http.StatusInternalServerError, map[string]string{"error": err.Error()})
 			}
 			books = append(books, b)
@@ -96,6 +112,7 @@ func getBook(db *sql.DB) echo.HandlerFunc {
 		if err == sql.ErrNoRows {
 			return c.JSON(http.StatusNotFound, map[string]string{"error": "Book not found"})
 		} else if err != nil {
+			log.Printf("Error querying book by ID: %v", err)
 			return c.JSON(http.StatusInternalServerError, map[string]string{"error": err.Error()})
 		}
 		return c.JSON(http.StatusOK, b)
@@ -107,6 +124,7 @@ func createBook(db *sql.DB) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		var b Book
 		if err := c.Bind(&b); err != nil {
+			log.Printf("Error binding book data: %v", err)
 			return c.JSON(http.StatusBadRequest, map[string]string{"error": "Invalid request"})
 		}
 
@@ -123,6 +141,7 @@ func createBook(db *sql.DB) echo.HandlerFunc {
 			b.PublishedYear,
 		)
 		if err != nil {
+			log.Printf("Error inserting book: %v", err)
 			return c.JSON(http.StatusInternalServerError, map[string]string{"error": err.Error()})
 		}
 
@@ -138,6 +157,7 @@ func updateBook(db *sql.DB) echo.HandlerFunc {
 		id := c.Param("id")
 		var b Book
 		if err := c.Bind(&b); err != nil {
+			log.Printf("Error binding book data: %v", err)
 			return c.JSON(http.StatusBadRequest, map[string]string{"error": "Invalid request"})
 		}
 
@@ -149,6 +169,7 @@ func updateBook(db *sql.DB) echo.HandlerFunc {
 			id,
 		)
 		if err != nil {
+			log.Printf("Error updating book: %v", err)
 			return c.JSON(http.StatusInternalServerError, map[string]string{"error": err.Error()})
 		}
 
@@ -170,6 +191,7 @@ func deleteBook(db *sql.DB) echo.HandlerFunc {
 		id := c.Param("id")
 		res, err := db.Exec("DELETE FROM books WHERE id = ?", id)
 		if err != nil {
+			log.Printf("Error deleting book: %v", err)
 			return c.JSON(http.StatusInternalServerError, map[string]string{"error": err.Error()})
 		}
 
