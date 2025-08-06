@@ -61,6 +61,19 @@ The following languages and frameworks are currently supported:
 | FastAPI | [/python-fastapi](/python-fastapi) | Modern, fast web framework |
 | BlackSheep | [/python-blacksheep](/python-blacksheep) | Fast ASGI web framework |
 
+### Go Implementations
+| Framework | Folder | Description |
+|-----------|--------|-------------|
+| Fiber | [/go-fiber](/go-fiber) | Express-inspired web framework |
+| Echo | [/go-echo](/go-echo) | High performance, minimalist Go web framework |
+
+### Rust Implementations
+| Framework | Folder | Description |
+|-----------|--------|-------------|
+| Rocket | [/rust-rocket](/rust-rocket) | Type-safe web framework |
+| Poem | [/rust-poem](/rust-poem) | Full-featured web framework |
+| Warp | [/rust-wrap](/rust-wrap) | Composable web framework |
+
 ### Java Implementations
 | Framework | Folder | Description |
 |-----------|--------|-------------|
@@ -70,18 +83,6 @@ The following languages and frameworks are currently supported:
 | Framework | Folder | Description |
 |-----------|--------|-------------|
 | ASP.NET Core | [/dotnet](/dotnet) | Cross-platform .NET framework |
-
-### Go Implementations
-| Framework | Folder | Description |
-|-----------|--------|-------------|
-| Fiber | [/go-fiber](/go-fiber) | Express-inspired web framework |
-
-### Rust Implementations
-| Framework | Folder | Description |
-|-----------|--------|-------------|
-| Rocket | [/rust-rocket](/rust-rocket) | Type-safe web framework |
-| Poem | [/rust-poem](/rust-poem) | Full-featured web framework |
-| Warp | [/rust-wrap](/rust-wrap) | Composable web framework |
 
 Each implementation contains:
 - Complete RESTful API with CRUD operations for `books`
