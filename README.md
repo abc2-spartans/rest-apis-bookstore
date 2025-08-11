@@ -35,6 +35,7 @@ rest-api-bookstore/
 ├── /javaspringboot/          # Java with Spring Boot framework
 ├── /dotnet/                  # .NET with ASP.NET Core
 ├── /go-fiber/                # Go with Fiber framework
+├── /go-echo/                 # Go with Echo framework
 ├── /rust-rocket/             # Rust with Rocket framework
 ├── /rust-poem/               # Rust with Poem framework
 ├── /rust-wrap/               # Rust with Warp framework
